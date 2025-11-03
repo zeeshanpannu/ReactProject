@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise II</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        function Product({name, price, discount}){
+            return(
+                <>
+                    {name}
+                    <br/>
+                    <br/>
+                    { discount != undefined ? (
+                        <del>Price: ${price}</del>
+                    ) : (
+                        <span>Price: ${price}</span>
+                    )}
+                    <br/>
+                    <br/>
+                    { discount != undefined && (
+                        <span>Discount: ${discount}</span>
+                    )}
+                    <br/>
+                    <br/>
+                    <button>Add to cart</button>
+                   
+                </>
+            );
+        }
+
+        function App(){
+            return (
+                <> 
+                    <div>
+                        <div>
+                            <Product 
+                                name="Cotton Socks"
+                                price="10.90"
+                                discount="5.45"
+                            /> 
+                        </div>
+                        <div>
+                            <Product 
+                                name="Tennis ball"
+                                price="6.00"
+                                discount="5.00"
+                            />
+                        </div>
+                        <div>
+                            <Product 
+                                name="T-shirt"
+                                price="7.99"
+                            />
+                        </div> 
+                    </div>
+                </>
+            );
+        }
+        
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container).render(<App/>);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Basic Example</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+</head>
+<body>
+    <div id="root"></div><h1>Hello, React!</h1>
+    <script type="text/babel">
+        const button = <button>Click Me!</button>;
+        const productCost = 10+8+8;
+        const shippingCost = 5;
+        const totalCost = productCost + shippingCost;
+        const cDate = dayjs().format('MMMM D');
+        console.log("Current Date: ", cDate);
+
+        // const div = <div>
+        //                 <h1>Today is {cDate}</h1>
+        //                 <h1>Current time : {cTime}</h1>
+        //                 <h2>Product cost: {productCost} </h2>
+        //                 <h2>Shipping cost: {shippingCost} </h2>
+        //                 <h2>Total cost: {totalCost} </h2>
+        //                 <button>Place your order</button>
+        //             </div>;
+        
+
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+   //     root.render(div);
+        setInterval(() =>{
+            const cTime = dayjs().format('HH:mm:ss A');
+            const tDiv = <div>
+                            <h1>Current time : {cTime}</h1>
+                        </div>;
+            root.render(tDiv);
+        },1000)
+    </script>
+</body>
+</html>

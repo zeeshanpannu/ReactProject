@@ -7,54 +7,74 @@
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 </head>
 <body>
     <div id="root"></div>
     <script type="text/babel">
-        
-        const chatMessage =[{
-            message: "Hello ChatBot",
-            sender: "user",
-            id : "id1"
-        },
-        {
-            message: "Hello, How can I help you?",
-            sender: "robot",
-            id : "id2"
-        },
-        {
-            message: "Can you get me today's date?",
-            sender: "user",
-            id : "id3"
-        },
-        {
-            message: "Today is November 2",
-            sender: "robot",
-            id : "id4"
-        }];
 
-        const chatMessageComponents = 
+        function ChatMessages() {
+            const chatMessage =[{
+                message: "Hello ChatBot",
+                sender: "user",
+                id : "id1"
+            },
+            {
+                message: "Hello, How can I help you?",
+                sender: "robot",
+                id : "id2"
+            },
+            {
+                message: "Can you get me today's date?",
+                sender: "user",
+                id : "id3"
+            },
+            {
+                message: "Today is November 2",
+                sender: "robot",
+                id : "id4"
+            }];
+
+            function sendMessage() {
+                alert("Message sent to ChatBot");
+            }
+            return (
+                <>  
+                    <button onClick={sendMessage}>Send Message</button>  
+                    {chatMessage.map ((chatMessageObj) => {
+                                return(
+                                    <ChatMessage
+                                        message={chatMessageObj.message}
+                                        sender={chatMessageObj.sender}
+                                        key={chatMessageObj.id}
+                                    />
+                                );
+                            })
+                    };
+                </>
+            );
+        }
+        
+        
 
         function ChatBot(){
             return (
                 <>
-                    <input type="text" placeholder="Send a message to ChatBot" />
+                    <input type="text" placeholder="Send a message to ChatBot" size='30' />
                     <button>Send</button>
                 </>
             );
         }
         function ChatMessage( { message, sender} ) { 
             return (
-            <div>
-                { sender === 'robot' &&  (
-                    <img src="robot.png" width="30"/>
-                )}
-                {message}
-                { sender === 'user' &&  (
-                    <img src="profile_image.png" width="30"/>
-                )}
-            </div>
+                <div>
+                    { sender === 'robot' &&  (
+                        <img src="robot.png" width="30"/>
+                    )}
+                    {message}
+                    { sender === 'user' &&  (
+                        <img src="profile_image.png" width="30"/>
+                    )}
+                </div>
             );
         }
 
@@ -62,16 +82,7 @@
             return (
                 <>
                     <ChatBot />
-                    {chatMessage.map ((chatMessageObj) => {
-                        return(
-                            <ChatMessage
-                                message={chatMessageObj.message}
-                                sender={chatMessage.sender}
-                                key={chatMessage.id}
-                            />
-                        );
-                    })
-                    }
+                    <ChatMessages />
                 </>
             );
         }
